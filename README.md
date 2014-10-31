@@ -10,4 +10,4 @@ To use `ihmc_msgs`, check the project out in to the `src` directory of your catk
 
 You should then `rosrun ihmc_msgs ihmcBootstrap.py` to download the binary distribution of the IHMC ROS API.
 
-There are three roslaunch files in the package: `ihmc_robot` for starting the API node that will talk to the real controller, `ihmc_sim` for launching a simulator and its API node, and `display_simulation` which will bring up an rviz visualization (currently only for the sim node).
+There are three roslaunch files in the package: `ihmc_robot.launch` for starting the API node that will talk to the real controller, `ihmc_sim.launch` for launching a simulator and its API node, and `display_simulation.launch` which will bring up an rviz visualization (currently only for the sim node).
