@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-If using `icmc_msgs` with the real Atlas robot, the computer needs to have at least one network interface that is on the Boston Dynamics Robot's subnet and that has the full IP address of 10.66.171.44.
+If using `icmc_msgs` with the real Atlas robot, the computer needs to have at least one network interface that is on the Boston Dynamics Robot's subnet and that has the full IP address of 10.66.171.44. If this will collide with existing software, you can change this configuration once the distribution has been downloaded (see below) by modifying the `networkProcessorIP` value in <distribution>/bin/Configurations/atlas_network_config.ini
 
 The `ihmc_msgs` project is meant to be included in a ROS catkin workspace. 
 
