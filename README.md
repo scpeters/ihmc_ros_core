@@ -6,9 +6,9 @@
 
 If using `icmc_msgs` with the real Atlas robot, the computer needs to have at least one network interface that is on the Boston Dynamics Robot's subnet and that has the full IP address of 10.66.171.44. If this will collide with existing software, you can change this configuration once the distribution has been downloaded (see below) by modifying the `networkProcessorIP` value in `scripts/<distribution>/bin/Configurations/atlas_network_config.ini`
 
-The `ihmc_msgs` project is meant to be included in a ROS catkin workspace. 
+The `ihmc_msgs` project is meant to be included in a ROS catkin workspace.
 
-To use `ihmc_msgs`, check the project out in to the `src` directory of your catkin workspace, perform a `catkin_make`, and source the generated setup file for your shell.
+To use `ihmc_msgs`, check the project out in to the `src` directory of your catkin workspace, perform a `catkin_make`, and source the generated setup file for your shell.  If you're upgrading from a previous version of `ihmc_msgs`, you should `rm -rf` the `build` and `devel` directories in your catkin workspace before running `catkin_make`
 
 You should then `rosrun ihmc_msgs ihmcBootstrap.py` to download the binary distribution of the IHMC ROS API.
 
