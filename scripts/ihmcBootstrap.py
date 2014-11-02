@@ -1,25 +1,25 @@
 #!/usr/bin/python
-import zipfile, os, sys, stat
+import tarfile, os, sys, stat
 from urllib2 import urlopen, URLError, HTTPError
 
 
 try:
-    distVersion = "IHMCAtlasAPI-0.2.0-alpha"
+    distVersion = "IHMCAtlasAPI-0.2.1-alpha"
     scriptsDir = os.path.dirname(os.path.realpath(__file__))
-    destFile = scriptsDir + "/" + distVersion + ".zip"
+    destFile = scriptsDir + "/" + distVersion + ".tar"
 
     if os.path.exists(scriptsDir + "/" + distVersion):
         print "An API instance already exists, please remove " + scriptsDir + "/" + distVersion + " and run the bootstrapper again."
         exit(1)
 
-    distZip = urlopen("https://bitbucket.org/ihmcrobotics/ihmc_msgs/downloads/" + distVersion + ".zip")
+    distTar = urlopen("https://bitbucket.org/ihmcrobotics/ihmc_msgs/downloads/" + distVersion + ".tar")
     print "Downloading the IHMC Atlas API distribution..."
 
     with open(destFile, "wb") as local_file:
-        local_file.write(distZip.read())
+        local_file.write(distTar.read())
 
-    print "Unzipping and cleaning up..."
-    archiveHandle = zipfile.ZipFile(destFile, "r")
+    print "Untarring and cleaning up..."
+    archiveHandle = tarfile.TarFile(destFile, "r")
     archiveHandle.extractall(scriptsDir)
     os.remove(destFile)
 
