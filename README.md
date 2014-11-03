@@ -18,4 +18,6 @@ If the `IHMCAtlasAPI` is the only ROS node active, it will handle setting up its
 
 ## Box Step demo
 
+ *There is currently a bug in the Box Step demo, but it should be fixed shortly*
+
 To verify that the setup works without having to hand craft any ROS Messages, you can `rosrun ihmc_msgs boxStep.py` to run the box step script, which will automatically pipe ROS messages in to the API.
