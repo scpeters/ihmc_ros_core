@@ -4,7 +4,7 @@
   <arg name="sim_model" default="-m DRC_NO_HANDS" />
   <param name="/atlas/robot_description" textfile="$(find ihmc_msgs)/description/drc_no_hands.urdf" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
-    <remap from="joint_states" to="/atlas/outputs/joint_states" />
+    <remap from="joint_states" to="/ihmc_msgs/atlas/output/joint_states" />
     <remap from="robot_description" to="/atlas/robot_description" />
   </node>
   <node name="IHMCAtlasAPISimulator" pkg="ihmc_msgs" type="IHMCAtlasAPISimulator" required="true" output="screen" cwd="node">
