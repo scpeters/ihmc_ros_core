@@ -11,7 +11,7 @@ import math
 
 pelvis_transform = RigidBodyTransform()
 foot_y_offset = 0.15
-foot_z_offset = -0.75
+foot_z_offset = -0.705
 left_offset =  [0, foot_y_offset, foot_z_offset]
 right_offset = [0,-foot_y_offset, foot_z_offset]
 footstep_offset_Vectors = [left_offset, right_offset]
@@ -41,7 +41,7 @@ def walkInPlace(num_steps):
         # STEP_ON_OR_OFF = 2
         # NO_STEP = 3
         # LOW_HEIGHT = 4
-        msg.trajectoryWaypointGenerationMethod = 0
+        # msg.trajectoryWaypointGenerationMethod = 0
         
         #set trajectoryBox if waypoint generation is BY_BOX
         #footStepList.trajectoryBoxData = SquareDataMessage()
@@ -72,7 +72,7 @@ def boxStep():
         msg = FootstepDataListMessage()
         msg.transferTime = 1.5
         msg.swingTime = 1.5
-        msg.trajectoryWaypointGenerationMethod = 0
+        #msg.trajectoryWaypointGenerationMethod = 0
         
         lock = True
         msg.footstepDataList.extend(createFootStepList(LEFT, 4, 0.25, 0, 0, False))

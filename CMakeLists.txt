@@ -56,9 +56,7 @@ find_package(catkin REQUIRED COMPONENTS
    FootstepStatusMessage.msg
    HandPosePacketMessage.msg
    HeadOrientationPacketMessage.msg
-   LookAtPacketMessage.msg
    PauseCommandMessage.msg
-   PelvisPosePacketMessage.msg
    RobotConfigurationDataMessage.msg
    SquareDataMessage.msg
  )
