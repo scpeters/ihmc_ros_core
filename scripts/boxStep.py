@@ -19,53 +19,53 @@ RIGHT = 1
 
 def stepInPlace():
     msg = FootstepDataListMessage()
-    msg.transferTime = 1.5
-    msg.swingTime = 1.5
+    msg.transfer_time = 1.5
+    msg.swing_time = 1.5
 
-    msg.footstepDataList.append(createFootStepInPlace(LEFT))
-    msg.footstepDataList.append(createFootStepInPlace(RIGHT))
-    msg.footstepDataList.append(createFootStepInPlace(LEFT))
-    msg.footstepDataList.append(createFootStepInPlace(RIGHT))
+    msg.footstep_data_list.append(createFootStepInPlace(LEFT))
+    msg.footstep_data_list.append(createFootStepInPlace(RIGHT))
+    msg.footstep_data_list.append(createFootStepInPlace(LEFT))
+    msg.footstep_data_list.append(createFootStepInPlace(RIGHT))
 
     footStepListPublisher.publish(msg)
     print 'walking in place...'
-    waitForFootsteps(len(msg.footstepDataList))
+    waitForFootsteps(len(msg.footstep_data_list))
 
 def boxStep():
     msg = FootstepDataListMessage()
-    msg.transferTime = 1.5
-    msg.swingTime = 1.5
+    msg.transfer_time = 1.5
+    msg.swing_time = 1.5
 
     # walk forward starting LEFT
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.2, 0.0, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.4, 0.0, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.4, 0.0, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.2, 0.0, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.4, 0.0, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.4, 0.0, 0.0]))
 
     # walk left starting LEFT
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.4, 0.2, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.4, 0.2, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.4, 0.4, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.4, 0.4, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.4, 0.2, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.4, 0.2, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.4, 0.4, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.4, 0.4, 0.0]))
 
     # walk back starting LEFT
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.2, 0.4, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.0, 0.4, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.0, 0.4, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.2, 0.4, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.0, 0.4, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.0, 0.4, 0.0]))
 
     # walk right starting RIGHT
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.0, 0.2, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.0, 0.2, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(RIGHT, [0.0, 0.0, 0.0]))
-    msg.footstepDataList.append(createFootStepOffset(LEFT, [0.0, 0.0, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.0, 0.2, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.0, 0.2, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(RIGHT, [0.0, 0.0, 0.0]))
+    msg.footstep_data_list.append(createFootStepOffset(LEFT, [0.0, 0.0, 0.0]))
 
     footStepListPublisher.publish(msg)
     print 'box stepping...'
-    waitForFootsteps(len(msg.footstepDataList))
+    waitForFootsteps(len(msg.footstep_data_list))
 
 # Creates footstep with the current position and orientation of the foot.
 def createFootStepInPlace(stepSide):
     footstep = FootstepDataMessage()
-    footstep.robotSide = stepSide
+    footstep.robot_side = stepSide
 
     if stepSide == LEFT:
         foot_frame = 'l_foot'
