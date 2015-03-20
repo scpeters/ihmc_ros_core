@@ -62,6 +62,7 @@ def boxStep():
     print 'box stepping...'
     waitForFootsteps(len(msg.footstepDataList))
 
+# Creates footstep with the current position and orientation of the foot.
 def createFootStepInPlace(stepSide):
     footstep = FootstepDataMessage()
     footstep.robotSide = stepSide
@@ -77,6 +78,7 @@ def createFootStepInPlace(stepSide):
 
     return footstep
 
+# Creates footstep offset from the current foot position. The offset is in foot frame.
 def createFootStepOffset(stepSide, offset):
     footstep = createFootStepInPlace(stepSide)
 
