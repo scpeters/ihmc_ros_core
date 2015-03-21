@@ -2,11 +2,6 @@
 	<param name="use_sim_time" value="true"/>
 	<arg name="model" />
 	<arg name="gui" default="True" />
-	<param name="/atlas/robot_description" textfile="$(find ihmc_msgs)/description/drc_no_hands.urdf" />
 	<param name="use_gui" value="$(arg gui)"/>
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
-              <remap from="joint_states" to="/atlas/outputs/joint_states" />
-              <remap from="robot_description" to="/atlas/robot_description" />
-	</node>
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find ihmc_msgs)/rviz_configurations/atlas_simulation.rviz" />
 </launch>
