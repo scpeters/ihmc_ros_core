@@ -48,17 +48,13 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    ChestOrientationPacketMessage.msg
    ComHeightPacketMessage.msg
-   ComprehensiveMessage.msg
    FootPosePacketMessage.msg
-   FootStatePacketMessage.msg
    FootstepDataListMessage.msg
    FootstepDataMessage.msg
    FootstepStatusMessage.msg
    HandPosePacketMessage.msg
    HeadOrientationPacketMessage.msg
    PauseCommandMessage.msg
-   RobotConfigurationDataMessage.msg
-   SquareDataMessage.msg
  )
 
 ## Generate services in the 'srv' folder
