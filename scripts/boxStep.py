@@ -2,17 +2,16 @@
 
 import time
 import rospy
+import tf
 import tf2_ros
+import numpy
 
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Quaternion
 
 from ihmc_msgs.msg import FootstepStatusMessage
-from ihmc_msgs.msg import RobotConfigurationDataMessage
 from ihmc_msgs.msg import FootstepDataListMessage
 from ihmc_msgs.msg import FootstepDataMessage
-
-from rigidBodyTransform import RigidBodyTransform
 
 LEFT = 0
 RIGHT = 1
@@ -82,9 +81,10 @@ def createFootStepInPlace(stepSide):
 def createFootStepOffset(stepSide, offset):
     footstep = createFootStepInPlace(stepSide)
 
-    footWorldRotation = RigidBodyTransform()
-    footWorldRotation.setRotationFromQuaternion(footstep.orientation)
-    transformedOffset = footWorldRotation.transformVector(offset)
+    # transform the offset to world frame
+    quat = footstep.orientation
+    rot = tf.transformations.quaternion_matrix([quat.x, quat.y, quat.z, quat.w])
+    transformedOffset = numpy.dot(rot[0:3, 0:3], offset)
 
     footstep.location.x += transformedOffset[0]
     footstep.location.y += transformedOffset[1]
