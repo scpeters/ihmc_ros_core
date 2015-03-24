@@ -1,5 +1,5 @@
 scripts/IHMCAtlasAPI*
-ihmc_cim/bin/IHMCAtlasAPI*
+ihmc_sim/bin/IHMCAtlasAPI*
 
 *.pyc
 *~
