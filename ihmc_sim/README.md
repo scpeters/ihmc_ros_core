@@ -1,8 +1,12 @@
 #ihmc_sim
 
+## Getting Started
+
+To download the latest IHMC Controller-plus-Sim binaries, you must first `rosrun ihmc_sim ihmcBootstrap.py`. This should always be done on the first run.
+
 ##Usage
 
-`ihmc_atlas` provides the `ihmc_atlas.launch` file, which starts up the IHMC ROS API configured to talk to the real robot.
+`ihmc_sim` provides the `ihmc_sim.launch` file, which starts up the IHMC ROS API integrated with Simulation Construction Set.
 
 You can set the following roslaunch args:
 
