@@ -108,8 +108,8 @@ if __name__ == '__main__':
     try:
         rospy.init_node('ihmc_box_step')
 
-        footStepStatusSubscriber = rospy.Subscriber('/ihmc_msgs/atlas/output/footstep_status', FootstepStatusMessage, recievedFootStepStatus)
-        footStepListPublisher = rospy.Publisher('/ihmc_msgs/atlas/control/footstep_list', FootstepDataListMessage, queue_size=1)
+        footStepStatusSubscriber = rospy.Subscriber('/ihmc_ros/atlas/output/footstep_status', FootstepStatusMessage, recievedFootStepStatus)
+        footStepListPublisher = rospy.Publisher('/ihmc_ros/atlas/control/footstep_list', FootstepDataListMessage, queue_size=1)
         
         tfBuffer = tf2_ros.Buffer()
         tfListener = tf2_ros.TransformListener(tfBuffer)
