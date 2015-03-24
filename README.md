@@ -14,4 +14,4 @@ The `ihmc_ros` project is meant to be included in a ROS catkin workspace and req
 - `ihmc_diagnostics` provides a collection of tools/scripts for trouble-shooting the Java installation and the behavior of the controller.
 - `ihmc_atlas` provides integration with the Boston Dynamics Atlas robot outside of simulation. Atlas teams that have the appropriate clearance from Boston Dynamics can find more information at [IHMC Atlas Controller Releases](https://bitbucket.org/ihmcrobotics/ihmc-atlas-controller-releases)
 
-For more information, see the `ihmc_ros` wiki here on BitBucket, or the README.md files in each package.
+For more information, see the [wiki here on BitBucket](https://bitbucket.org/ihmcrobotics/ihmc_ros/wiki) and the README.md files in each package.
