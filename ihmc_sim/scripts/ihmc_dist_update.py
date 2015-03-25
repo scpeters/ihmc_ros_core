@@ -73,7 +73,7 @@ def updateDistribution(newTarName, bucket_url, ihmcSimDir):
         if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
             sys.stderr.write('WARNING: Found ' + f + ' at ihmc_sim/' + f + '. \n')
             sys.stderr.write('This is an older version of the IHMC API distribution.\n')
-            sys.stderr.write('It will be deleted before continuing.')
+            sys.stderr.write('It will be deleted before continuing.\n\n')
             shutil.rmtree(os.path.join(ihmcSimDir, f))
 
 
