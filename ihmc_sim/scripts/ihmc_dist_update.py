@@ -71,8 +71,9 @@ def getNewestTarFileName(namespace, root, latestVersion):
 def updateDistribution(newTarName, bucket_url, ihmcSimDir):
     for f in os.listdir(ihmcSimDir):
         if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
-            sys.stderr.write('WARNING: Found a possibly existing  ' + f + 'at ihmc_sim/' + f + ' package.\n')
-            sys.stderr.write('This directory should be deleted or moved outside of the ROS_PACKAGE_PATH or it can cause errors when roslaunching the IHMC ROS API.\n')
+            sys.stderr.write('WARNING: Found ' + f + ' at ihmc_sim/' + f + '. \n')
+            sys.stderr.write('This is an older version of the IHMC API distribution.\n')
+            sys.stderr.write('It should be deleted or moved outside of the ROS_PACKAGE_PATH or it can cause problems when roslaunching the IHMC ROS API.\n')
 
     raw_input("Press Enter to continue...")
 
