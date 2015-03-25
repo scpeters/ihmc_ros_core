@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, sys, tarfile
+import os, sys, tarfile, shutil
 from xml.etree import ElementTree
 
 try:
@@ -73,9 +73,9 @@ def updateDistribution(newTarName, bucket_url, ihmcSimDir):
         if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
             sys.stderr.write('WARNING: Found ' + f + ' at ihmc_sim/' + f + '. \n')
             sys.stderr.write('This is an older version of the IHMC API distribution.\n')
-            sys.stderr.write('It should be deleted or moved outside of the ROS_PACKAGE_PATH or it can cause problems when roslaunching the IHMC ROS API.\n')
+            sys.stderr.write('It will be deleted before continuing.')
+            shutil.rmtree(os.path.join(ihmcSimDir, f))
 
-    raw_input("Press Enter to continue...")
 
     destFile = os.path.join(ihmcSimDir, newTarName)
 
