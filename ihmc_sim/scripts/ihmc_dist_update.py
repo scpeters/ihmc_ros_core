@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import os, sys, tarfile
+from xml.etree import ElementTree
+
 try:
     import semantic_version
 except ImportError, e:
@@ -15,9 +18,6 @@ try:
 except ImportError, e:
     sys.stderr.write("ihmc_dist_update.py cannot import rospkg Python package. Check your ROS and rospy installation.\n")
     sys.exit(1)
-
-import os, sys, tarfile
-from xml.etree import ElementTree
 
 def main():
 
@@ -71,7 +71,10 @@ def getNewestTarFileName(namespace, root, latestVersion):
 def updateDistribution(newTarName, bucket_url, ihmcSimDir):
     for f in os.listdir(ihmcSimDir):
         if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
-            sys.stderr.write('WARNING: Found pre-existing' + f + ' in ihmc_sim package. Remove all old versions of the distribution before launching anything.\n')
+            sys.stderr.write('WARNING: Found a possibly existing  ' + f + 'at ihmc_sim/' + f + ' package.\n')
+            sys.stderr.write('This directory should be deleted or moved outside of the ROS_PACKAGE_PATH or it can cause errors when roslaunching the IHMC ROS API.\n')
+
+    raw_input("Press Enter to continue...")
 
     destFile = os.path.join(ihmcSimDir, newTarName)
 
@@ -88,7 +91,7 @@ def updateDistribution(newTarName, bucket_url, ihmcSimDir):
     fileResponse.close()
 
     print "Untarring distribution and cleaning up..."
-    archiveHandle = tarfile.TarFile(tarFile)
+    archiveHandle = tarfile.TarFile(destFile)
     archiveHandle.extractall(ihmcSimDir)
     os.remove(destFile)
 
