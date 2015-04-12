@@ -32,7 +32,7 @@ install(DIRECTORY configurations
   FILES_MATCHING PATTERN "*.ini" 
 )
 
-# This ahas to be adjusted for new API release
+# This has to be adjusted for new API release
 install(DIRECTORY IHMCAtlasAPI-0.3.2-alpha
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
