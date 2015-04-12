@@ -17,4 +17,23 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  FILES_MATCHING PATTERN "*.launch" 
+)
+
+install(DIRECTORY scripts
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  FILES_MATCHING PATTERN "*.*" 
+)
+
+install(DIRECTORY configurations
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  FILES_MATCHING PATTERN "*.ini" 
+)
+
+# This ahas to be adjusted for new API release
+install(DIRECTORY IHMCAtlasAPI-0.3.2-alpha
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
