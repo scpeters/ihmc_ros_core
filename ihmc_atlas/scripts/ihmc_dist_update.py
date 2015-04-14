@@ -36,17 +36,17 @@ def main():
     newTar = getNewestTarFileName(namespace, root, latestVersion)
 
     rospack = rospkg.RosPack()
-    ihmcSimDir = rospack.get_path('ihmc_sim')
+    ihmcAtlasDir = rospack.get_path('ihmc_atlas')
 
     currentVersion = 0
 
-    for f in os.listdir(ihmcSimDir):
-        if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
+    for f in os.listdir(ihmcAtlasDir):
+        if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcAtlasDir, f)):
             currentVersion = semantic_version.Version(f.split("IHMCAtlasAPI-")[1])
 
     if latestVersion > currentVersion:
         print "Update Available! Preparing to download " + newTar
-        updateDistribution(newTar, bucket_url, ihmcSimDir)
+        updateDistribution(newTar, bucket_url, ihmcAtlasDir)
     else:
         print "IHMCAtlasApi is at the most current version."
 
@@ -68,18 +68,18 @@ def getNewestTarFileName(namespace, root, latestVersion):
                     return keyName
 
 
-def updateDistribution(newTarName, bucket_url, ihmcSimDir):
-    for f in os.listdir(ihmcSimDir):
-        if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcSimDir, f)):
-            sys.stderr.write('WARNING: Found ' + f + ' at ihmc_sim/' + f + '. \n')
+def updateDistribution(newTarName, bucket_url, ihmcAtlasDir):
+    for f in os.listdir(ihmcAtlasDir):
+        if "IHMCAtlasAPI" in f and os.path.isdir(os.path.join(ihmcAtlasDir, f)):
+            sys.stderr.write('WARNING: Found ' + f + ' at ihmc_atlas/' + f + '. \n')
             sys.stderr.write('This is an older version of the IHMC API distribution.\n')
             sys.stderr.write('It will be deleted before continuing.\n\n')
-            shutil.rmtree(os.path.join(ihmcSimDir, f))
+            shutil.rmtree(os.path.join(ihmcAtlasDir, f))
 
 
-    destFile = os.path.join(ihmcSimDir, newTarName)
+    destFile = os.path.join(ihmcAtlasDir, newTarName)
 
-    print "Downloading " + newTarName + " to ihmc_sim package..."
+    print "Downloading " + newTarName + " to ihmc_atlas package..."
     fileResponse = requests.get(bucket_url + "api_releases/" + newTarName, stream=True)
 
     with open(destFile, 'wb') as tarFile:
@@ -93,7 +93,7 @@ def updateDistribution(newTarName, bucket_url, ihmcSimDir):
 
     print "Untarring distribution and cleaning up..."
     archiveHandle = tarfile.TarFile(destFile)
-    archiveHandle.extractall(ihmcSimDir)
+    archiveHandle.extractall(ihmcAtlasDir)
     os.remove(destFile)
 
     print "Distribution update complete!"

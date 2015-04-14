@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>ihmc_ros</name>
-  <version>0.3.0</version>
+  <version>0.3.2</version>
   <description>The ihmc_ros package contains several ROS packages for interacting with the IHMC Whole Body Controller for humanoid robots.</description>
 
   <maintainer email="bshrewsbury@ihmc.us">The People's Glorious Point of Contact</maintainer>
@@ -19,8 +19,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>ihmc_msgs</run_depend>
   <run_depend>ihmc_atlas</run_depend>
+  <run_depend>ihmc_gazebo</run_depend>
   <run_depend>ihmc_diagnostics</run_depend>
   <run_depend>ihmc_models</run_depend>
-  <run_depend>ihmc_sim</run_depend>
 
 </package>
