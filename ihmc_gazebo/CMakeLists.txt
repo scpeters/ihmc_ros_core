@@ -32,7 +32,6 @@ get_rospack_flags(roscpp)
 include_directories(${roscpp_INCLUDE_DIRS})
 message("roscpp includes: ${roscpp_INCLUDE_DIRS}")
 link_directories(${roscpp_LIBRARY_DIRS})
-set(CMAKE_INSTALL_RPATH "${roscpp_LIBRARY_DIRS}")
 
 catkin_package(
   DEPENDS 
