@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<package>
+  <name>ihmc_gazebo</name>
+  <version>0.3.2</version>
+  <description>The ihmc_gazebo package</description>
+
+  <maintainer email="smccrory@ihmc.us">Stephen McCrory</maintainer>
+  <maintainer email="dfaconti@ihmc.us">Davide Faconti</maintainer>
+  <maintainer email="dstephen@ihmc.us">Doug Stephen</maintainer>
+  <maintainer email="jsmith@ihmc.us">Jesper Smith</maintainer>
+
+  <license>Apache 2.0</license>
+
+  <url type="website">http://bitbucket.org/ihmcrobotics/ihmc_ros</url>
+
+  <author email="jsmith@ihmc.us">Jesper Smith</author>
+  <author email="smccrory@ihmc.us">Stephen McCrory</author>
+  <author email="dfaconti@ihmc.us">Davide Faconti</author>
+  <author email="dstephen@ihmc.us">Doug Stephen</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>roscpp</run_depend>
+  
+  <!-- Taken from drcsim_gazebo -->
+  <build_depend>atlas_msgs</build_depend>
+  <build_depend>drcsim_gazebo_plugins</build_depend>
+  <build_depend>drcsim_gazebo_ros_plugins</build_depend>
+  <build_depend>drcsim_model_resources</build_depend>
+  <build_depend>atlas_description</build_depend>
+  <build_depend>irobot_hand_description</build_depend>
+  <build_depend>multisense_sl_description</build_depend>
+  <build_depend>sandia_hand_description</build_depend>
+  <run_depend>atlas_msgs</run_depend>
+  <run_depend>drcsim_gazebo_plugins</run_depend>
+  <run_depend>drcsim_gazebo_ros_plugins</run_depend>
+  <run_depend>drcsim_model_resources</run_depend>
+  <run_depend>atlas_description</run_depend>
+  <run_depend>irobot_hand_description</run_depend>
+  <run_depend>multisense_sl_description</run_depend>
+  <run_depend>sandia_hand_description</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- You can specify that this package is a metapackage here: -->
+    <!-- <metapackage/> -->
+    <gazebo_ros plugin_path="${prefix}/../../devel/lib"/>
+
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
