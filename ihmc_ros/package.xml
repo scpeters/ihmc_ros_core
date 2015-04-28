@@ -19,7 +19,6 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>ihmc_msgs</run_depend>
   <run_depend>ihmc_atlas</run_depend>
-  <run_depend>ihmc_gazebo</run_depend>
   <run_depend>ihmc_diagnostics</run_depend>
   <run_depend>ihmc_models</run_depend>
 
