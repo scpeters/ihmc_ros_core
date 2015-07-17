@@ -4,7 +4,7 @@ project(ihmc_gazebo)
 include (FindPkgConfig)
 if (PKG_CONFIG_FOUND)
   pkg_check_modules(GAZEBO gazebo)
-endif()
+endif(PKG_CONFIG_FOUND)
 
 # Load catkin and all dependencies required for this package
 find_package(catkin REQUIRED COMPONENTS 
@@ -34,7 +34,7 @@ message("roscpp includes: ${roscpp_INCLUDE_DIRS}")
 link_directories(${roscpp_LIBRARY_DIRS})
 
 catkin_package(
-  DEPENDS 
+  CATKIN_DEPENDS 
     roscpp 
     gazebo_ros 
 )
