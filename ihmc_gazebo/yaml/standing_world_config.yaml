@@ -13,8 +13,8 @@ atlas:
     pid: {p: 4000.0, i: 5.0, d: 15.0, imax: 50.0, imin: -50.0, cmdMax: 300.0, cmdMin: -300.0}
   hokuyo_joint:
     initial_angle: 0.0
-    control_mode: torque
-    pid: {p: 4000.0, i: 5.0, d: 15.0, imax: 50.0, imin: -50.0, cmdMax: 300.0, cmdMin: -300.0}
+    control_mode: pid
+    pid: {p: 0, i: 0, d: 0, imax: 0, imin: .0, cmdMax: 0, cmdMin: 0}
   l_arm_elx:
     initial_angle: 0.498
     control_mode: torque
