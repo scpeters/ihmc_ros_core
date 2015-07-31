@@ -4,7 +4,7 @@ atlas:
     control_mode: torque
     pid: {p: 4000.0, i: 5.0, d: 15.0, imax: 50.0, imin: -50.0, cmdMax: 300.0, cmdMin: -300.0}
   back_bky:
-    initial_angle: 0.1
+    initial_angle: 0.0
     control_mode: torque
     pid: {p: 4000.0, i: 5.0, d: 15.0, imax: 50.0, imin: -50.0, cmdMax: 300.0, cmdMin: -300.0}
   back_bkz:
