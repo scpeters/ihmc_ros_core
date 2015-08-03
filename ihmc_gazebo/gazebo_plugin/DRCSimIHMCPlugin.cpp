@@ -163,8 +163,8 @@ public:
             }
         }
 
-        forceSensors.push_back(this->model->GetJoint("l_arm_wrx"));
-        forceSensors.push_back(this->model->GetJoint("r_arm_wrx"));
+        forceSensors.push_back(this->model->GetJoint("l_arm_wry2"));
+        forceSensors.push_back(this->model->GetJoint("r_arm_wry2"));
         forceSensors.push_back(this->model->GetJoint("l_leg_akx"));
         forceSensors.push_back(this->model->GetJoint("r_leg_akx"));
 
