@@ -39,3 +39,11 @@ catkin_package(
     gazebo_ros 
 )
 
+# Install Gazebo launch files and world files
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+install(DIRECTORY worlds/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds
+)
+
