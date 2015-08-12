@@ -49,9 +49,12 @@ add_library(DRCSimIHMCPlugin SHARED gazebo_plugin/DRCSimIHMCPlugin.cpp)
 target_link_libraries(DRCSimIHMCPlugin ${Boost_LIBRARIES} ${GAZEBO_LIBRARIES} TCPServer)
 
 
-# Install Gazebo launch files and world files
+# Install Gazebo launch files, urdf, and world files
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+install(DIRECTORY urdf/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
 )
 install(DIRECTORY worlds/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds
