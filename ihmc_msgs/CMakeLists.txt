@@ -59,11 +59,6 @@ find_package(catkin REQUIRED COMPONENTS
    ArmJointTrajectoryPacketMessage.msg
    JointTrajectoryPointMessage.msg
    JointAnglesPacketMessage.msg
-   AtlasDesiredPumpPSIPacketMessage.msg
-   AtlasElectricMotorEnablePacketMessage.msg
-   AtlasWristSensorCalibrationRequestPacketMessage.msg
-   RawImuData.msg
-   BatchRawImuData.msg
    Point2dMessage.msg
    HighLevelStatePacketMessage.msg
    SupportPolygonMessage.msg
