@@ -46,30 +46,30 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
+   ArmJointTrajectoryPacketMessage.msg
    ChestOrientationPacketMessage.msg
    ComHeightPacketMessage.msg
+   FingerStatePacketMessage.msg
    FootPosePacketMessage.msg
    FootstepDataListMessage.msg
    FootstepDataMessage.msg
    FootstepStatusMessage.msg
+   HandComplianceControlParametersPacketMessage.msg
    HandPosePacketMessage.msg
    HeadOrientationPacketMessage.msg
-   PauseCommandMessage.msg
+   HighLevelStateChangePacketMessage.msg
    HighLevelStatePacketMessage.msg
-   ArmJointTrajectoryPacketMessage.msg
-   JointTrajectoryPointMessage.msg
    JointAnglesPacketMessage.msg
-   Point2dMessage.msg
-   HighLevelStatePacketMessage.msg
-   SupportPolygonMessage.msg
-   HandComplianceControlParametersPacketMessage.msg
-   LegCompliancePacketMessage.msg
-   SingleJointAnglePacketMessage.msg
-   MultiJointAnglePacketMessage.msg
-   FingerStatePacketMessage.msg
-   WholeBodyTrajectoryPacketMessage.msg
-   StopMotionPacketMessage.msg
+   JointTrajectoryPointMessage.msg
    LastReceivedMessage.msg
+   LegCompliancePacketMessage.msg
+   MultiJointAnglePacketMessage.msg
+   PauseCommandMessage.msg
+   Point2dMessage.msg
+   SingleJointAnglePacketMessage.msg
+   StopMotionPacketMessage.msg
+   SupportPolygonMessage.msg
+   WholeBodyTrajectoryPacketMessage.msg
  )
 
 ## Generate services in the 'srv' folder

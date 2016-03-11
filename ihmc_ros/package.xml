@@ -18,6 +18,6 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>ihmc_msgs</run_depend>
-  <run_depend>ihmc_robotics</run_depend>
+  <run_depend>ihmc_ros_common</run_depend>
 
 </package>
