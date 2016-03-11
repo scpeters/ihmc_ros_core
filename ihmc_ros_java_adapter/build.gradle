@@ -1,0 +1,64 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath: "org.yaml:snakeyaml:1.16"
+  }
+}
+
+apply plugin: 'java'
+
+repositories {
+    maven {
+      url  "http://dl.bintray.com/ihmcrobotics/maven-vendor"
+    }
+
+    maven {
+      url  "http://dl.bintray.com/ihmcrobotics/maven-release"
+    }
+
+    maven {
+      url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
+    }
+
+    maven {
+      url "http://clojars.org/repo/"
+    }
+
+    maven {
+      url "https://bengal.ihmc.us/nexus/content/repositories/thirdparty"
+    }
+
+    mavenLocal()
+
+    jcenter()
+
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+task parseYaml {
+  configurations.create("ros")
+  configurations.ros {
+    repositories {
+
+    }
+  }
+  project.dependencies.add("ros", "us.ihmc:SimulationConstructionSet:0.7.4")
+}
+
+task blah(dependsOn: parseYaml) {
+  configurations.ros.each { dep ->
+      println dep
+  }
+}
+
+task runJava(type: JavaExec, dependsOn: parseYaml) {
+  classpath = sourceSets.main.runtimeClasspath
+  workingDir = project.projectDir
+}
