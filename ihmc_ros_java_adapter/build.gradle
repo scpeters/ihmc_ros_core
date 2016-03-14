@@ -1,34 +1,39 @@
 buildscript {
-  repositories {
-    mavenCentral()
-  }
+    repositories {
+        mavenCentral()
+    }
 
-  dependencies {
-    classpath: "org.yaml:snakeyaml:1.16"
-  }
+    dependencies {
+        classpath: "org.yaml:snakeyaml:1.16"
+    }
 }
 
 apply plugin: 'java'
+import us.ihmc.ros.java_adapter.*
 
 repositories {
     maven {
-      url  "http://dl.bintray.com/ihmcrobotics/maven-vendor"
+        url "http://dl.bintray.com/ihmcrobotics/maven-vendor"
     }
 
     maven {
-      url  "http://dl.bintray.com/ihmcrobotics/maven-release"
+        url "http://dl.bintray.com/ihmcrobotics/maven-release"
     }
 
     maven {
-      url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
+        url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
     }
 
     maven {
-      url "http://clojars.org/repo/"
+        url "http://clojars.org/repo/"
     }
 
     maven {
-      url "https://bengal.ihmc.us/nexus/content/repositories/thirdparty"
+        url "https://bengal.ihmc.us/nexus/content/repositories/thirdparty"
+    }
+
+    maven {
+        url 'http://updates.jmonkeyengine.org/maven'
     }
 
     mavenLocal()
@@ -46,23 +51,42 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
 
+
+task generateTestYaml << {
+    new IHMCROSJavaYamlLoader().dumpYaml("/home/parallels/dump.yaml")
+//    new IHMCRosJavaYamlConfiguration().
+}
+
+task testLoadYaml << {
+    def configHolder = new IHMCROSJavaYamlLoader().loadYaml("/home/parallels/dump.yaml")
+
+    configHolder.dependencyHolder.dependencies.each { dep -> println dep}
+    println configHolder.vmConfiguration.heapSize
+    println configHolder.vmConfiguration.mainMethod
+}
+
 task parseYaml {
-  configurations.create("ros")
-  configurations.ros {
-    repositories {
-
+    if (!project.hasProperty("yaml")) {
+        throw new GradleException("No configuration yaml specified, cannot use the Java adapter!")
     }
-  }
-  project.dependencies.add("ros", "us.ihmc:SimulationConstructionSet:0.7.4")
+
+    project.ext.configHolder = new IHMCROSJavaYamlLoader().loadYaml(project.yaml)
+    configurations.create("ros")
+
+    project.configHolder.dependencyHolder.dependencies.each { dep ->
+        project.dependencies.add("ros", dep)
+    }
 }
 
-task blah(dependsOn: parseYaml) {
-  configurations.ros.each { dep ->
-      println dep
-  }
-}
+//task blah(dependsOn: parseYaml) {
+//    configurations.ros.each { dep ->
+//        println dep
+//    }
+//}
 
 task runJava(type: JavaExec, dependsOn: parseYaml) {
-  classpath = sourceSets.main.runtimeClasspath
-  workingDir = project.projectDir
+    classpath = configurations.ros
+    workingDir = project.projectDir
+    maxHeapSize = project.configHolder.vmConfiguration.heapSize
+    main = project.configHolder.vmConfiguration.mainMethod
 }
