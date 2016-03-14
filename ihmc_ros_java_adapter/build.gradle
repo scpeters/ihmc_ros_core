@@ -9,7 +9,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-import us.ihmc.ros.java_adapter.*
 
 repositories {
     maven {
@@ -51,20 +50,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
 
-
-task generateTestYaml << {
-    new IHMCROSJavaYamlLoader().dumpYaml("/home/parallels/dump.yaml")
-//    new IHMCRosJavaYamlConfiguration().
-}
-
-task testLoadYaml << {
-    def configHolder = new IHMCROSJavaYamlLoader().loadYaml("/home/parallels/dump.yaml")
-
-    configHolder.dependencyHolder.dependencies.each { dep -> println dep}
-    println configHolder.vmConfiguration.heapSize
-    println configHolder.vmConfiguration.mainMethod
-}
-
+import us.ihmc.ros.java_adapter.yaml.IHMCROSJavaYamlLoader
 task parseYaml {
     if (!project.hasProperty("yaml")) {
         throw new GradleException("No configuration yaml specified, cannot use the Java adapter!")
@@ -77,12 +63,6 @@ task parseYaml {
         project.dependencies.add("ros", dep)
     }
 }
-
-//task blah(dependsOn: parseYaml) {
-//    configurations.ros.each { dep ->
-//        println dep
-//    }
-//}
 
 task runJava(type: JavaExec, dependsOn: parseYaml) {
     classpath = configurations.ros
