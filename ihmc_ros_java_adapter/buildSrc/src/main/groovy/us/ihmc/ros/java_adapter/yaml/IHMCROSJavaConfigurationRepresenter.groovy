@@ -10,9 +10,9 @@ import us.ihmc.ros.java_adapter.*
 class IHMCROSJavaConfigurationRepresenter extends Representer {
 
     IHMCROSJavaConfigurationRepresenter() {
-        this.representers.put(IHMCROSJavaConfiguration.class, new IHMCROSJavaConfigurationRepresenter.RepresentConfiguration())
-        this.representers.put(IHMCROSJavaDependencyHolder.class, new IHMCROSJavaConfigurationRepresenter.RepresentDependencies())
-        this.representers.put(IHMCROSJavaVMConfiguration.class, new IHMCROSJavaConfigurationRepresenter.RepresentVMConfiguration())
+        this.representers.put(IHMCROSJavaConfiguration.class, new RepresentConfiguration())
+        this.representers.put(IHMCROSJavaDependencyHolder.class, new RepresentDependencies())
+        this.representers.put(IHMCROSJavaVMConfiguration.class, new RepresentVMConfiguration())
     }
 
     private class RepresentConfiguration implements Represent {
