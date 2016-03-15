@@ -83,6 +83,7 @@ task runJava(type: JavaExec, dependsOn: parseYaml) {
     if(!project.hasProperty("yaml")) {
         return
     }
+    ignoreExitValue = true
     classpath = configurations.ros
     workingDir = project.projectDir
     maxHeapSize = project.configHolder.vmConfiguration.heapSize
