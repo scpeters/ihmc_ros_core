@@ -1,0 +1,30 @@
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+
+def sourceLocationProperty = "ihmc.source.location"
+if(hasProperty(sourceLocationProperty)) {
+    configureAdapterForSourceCode(getProperty(sourceLocationProperty).toString())
+} else if (hasEnvVariableForProperty(sourceLocationProperty)) {
+    configureAdapterForSourceCode(System.env.IHMC_SOURCE_LOCATION)
+}
+
+private boolean hasEnvVariableForProperty(String propertyString) {
+    def envVarString = propertyString.replace(".", "_").toUpperCase(Locale.default)
+    return System.getenv().containsKey(envVarString)
+}
+
+private configureAdapterForSourceCode(String sourceLocation) {
+    Path sourceCodeLocation = Paths.get(sourceLocation)
+
+    if(Files.exists(sourceCodeLocation) && Files.exists(sourceCodeLocation.resolve("build.gradle"))) {
+        include "IHMCOpenRoboticsSoftware"
+        project(":IHMCOpenRoboticsSoftware").projectDir = sourceCodeLocation.toFile()
+
+        Files.list(sourceCodeLocation).each { subdir ->
+            if(Files.exists(subdir.resolve("build.gradle"))) {
+                include "IHMCOpenRoboticsSoftware:${subdir.fileName}"
+            }
+        }
+    }
+}

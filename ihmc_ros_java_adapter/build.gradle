@@ -42,8 +42,24 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
+/*
+ * Disable all of the tasks on the subproject so that invoking gradle commands on this project are quicker.
+ * Because integration with the subproject is optional and is achieved using a GradleBuild type task, we
+ * don't need to run the tasks here. We invoke them from the buildSourceProject.
+ *
+ * Also grabs a reference to the top level project of all the subprojects so we can get at its build script
+ * later.
+ */
+subprojects { subproject ->
+    rootProject.configure(subproject, {
+        subproject.tasks.each {task ->
+            task.enabled = false
+        }
+    })
 
+    if(subproject.getParent().equals(rootProject)) {
+        rootProject.ext.set("sourceProject", subproject)
+    }
 }
 
 task wrapper(type: Wrapper) {
@@ -52,10 +68,9 @@ task wrapper(type: Wrapper) {
 
 import us.ihmc.ros.java_adapter.yaml.IHMCROSJavaYamlLoader
 task parseYaml {
-    if (!project.hasProperty("yaml")) {
-        throw new GradleException("No configuration yaml specified, cannot use the Java adapter!")
+    if(!project.hasProperty("yaml")) {
+        return
     }
-
     project.ext.configHolder = new IHMCROSJavaYamlLoader().loadYaml(project.yaml)
     configurations.create("ros")
 
@@ -65,8 +80,22 @@ task parseYaml {
 }
 
 task runJava(type: JavaExec, dependsOn: parseYaml) {
+    if(!project.hasProperty("yaml")) {
+        return
+    }
     classpath = configurations.ros
     workingDir = project.projectDir
     maxHeapSize = project.configHolder.vmConfiguration.heapSize
     main = project.configHolder.vmConfiguration.mainMethod
+}
+
+task buildSourceProject(type: GradleBuild) {
+    buildFile = rootProject.sourceProject.buildFile
+    tasks = ['publishAllToMavenLocal']
+}
+
+gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+    if(graph.hasTask(parseYaml) && !project.hasProperty("yaml")) {
+        throw new GradleException("Attempting to use the Java execution adapter without setting the yaml location property. Please set the project property \"yaml\" to the location of the yaml configuration.\nFor more information on Gradle properties see https://docs.gradle.org/current/userguide/build_environment.html")
+    }
 }
