@@ -11,8 +11,6 @@ class IHMCROSJavaConfigurationRepresenter extends Representer {
 
     IHMCROSJavaConfigurationRepresenter() {
         this.representers.put(IHMCROSJavaConfiguration.class, new RepresentConfiguration())
-        this.representers.put(IHMCROSJavaDependencyHolder.class, new RepresentDependencies())
-        this.representers.put(IHMCROSJavaVMConfiguration.class, new RepresentVMConfiguration())
     }
 
     private class RepresentConfiguration implements Represent {
@@ -23,33 +21,18 @@ class IHMCROSJavaConfigurationRepresenter extends Representer {
             def depHolder = config.dependencyHolder
             def vmConfig = config.vmConfiguration
 
-            def mapping = new ArrayList<Object>()
+            def mapping = new HashMap<String, Object>()
 
-            mapping.add(vmConfig)
-            mapping.add(depHolder)
+            def vmArgsMapping = new HashMap<String, Object>()
 
-            return representSequence(new Tag(IHMCROSJavaConfigurationConstructor.CORE_TAG), mapping, false)
-        }
-    }
+            vmArgsMapping.put("mainMethod", vmConfig.mainMethod)
+            vmArgsMapping.put("heapSize", vmConfig.heapSize)
 
-    private class RepresentDependencies implements Represent {
-        @Override
-        Node representData(Object o) {
-            def dependencyHolder = o as IHMCROSJavaDependencyHolder
-            return representSequence(new Tag(IHMCROSJavaConfigurationConstructor.DEPENDENCIES_TAG), dependencyHolder.dependencies, false)
-        }
-    }
+            mapping.put(IHMCROSJavaConfigurationConstructor.VM_TAG, vmArgsMapping)
+            mapping.put(IHMCROSJavaConfigurationConstructor.DEPENDENCIES_TAG, depHolder.dependencies)
+            mapping.put(IHMCROSJavaConfigurationConstructor.ARGS_TAG, config.programArguments)
 
-    private class RepresentVMConfiguration implements Represent {
-        @Override
-        Node representData(Object o) {
-            def vmConfig = o as IHMCROSJavaVMConfiguration
-            def stringMapping = new HashMap<String, String>()
-
-            stringMapping.put("mainMethod", vmConfig.mainMethod)
-            stringMapping.put("heapSize", vmConfig.heapSize);
-
-            return representMapping(new Tag(IHMCROSJavaConfigurationConstructor.VM_TAG), stringMapping, false)
+            return representMapping(new Tag(IHMCROSJavaConfigurationConstructor.CORE_TAG), mapping, false)
         }
     }
 }

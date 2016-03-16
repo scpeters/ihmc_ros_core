@@ -6,4 +6,5 @@ import groovy.transform.Canonical
 class IHMCROSJavaConfiguration {
     IHMCROSJavaDependencyHolder dependencyHolder
     IHMCROSJavaVMConfiguration vmConfiguration
+    ArrayList<String> programArguments
 }

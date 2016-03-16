@@ -5,7 +5,6 @@ repositories {
 }
 
 dependencies {
-    compile gradleApi()
     compile localGroovy()
-    compile "org.yaml:snakeyaml:1.16"
+    compile "org.yaml:snakeyaml:1.6"
 }

@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath: "org.yaml:snakeyaml:1.16"
+        classpath "org.yaml:snakeyaml:1.6"
     }
 }
 
@@ -67,6 +67,7 @@ task wrapper(type: Wrapper) {
 }
 
 import us.ihmc.ros.java_adapter.yaml.IHMCROSJavaYamlLoader
+
 task parseYaml {
     if(!project.hasProperty("yaml")) {
         return
@@ -88,9 +89,22 @@ task runJava(type: JavaExec, dependsOn: parseYaml) {
     workingDir = project.projectDir
     maxHeapSize = project.configHolder.vmConfiguration.heapSize
     main = project.configHolder.vmConfiguration.mainMethod
+    args = []
+    if(project.hasProperty("programArgs")) {
+        args project.programArgs.split(",")
+    }
+    else {
+        String[] argArray = new String[project.configHolder.programArguments.size()]
+        argArray = project.configHolder.programArguments.toArray(argArray)
+        args argArray
+    }
 }
 
 task buildSourceProject(type: GradleBuild) {
+    if(subprojects.empty)
+    {
+        return
+    }
     buildFile = rootProject.sourceProject.buildFile
     tasks = ['publishAllToMavenLocal']
 }
