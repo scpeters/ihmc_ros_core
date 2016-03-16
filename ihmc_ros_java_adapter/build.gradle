@@ -89,6 +89,11 @@ task runJava(type: JavaExec, dependsOn: parseYaml) {
     workingDir = project.projectDir
     maxHeapSize = project.configHolder.vmConfiguration.heapSize
     main = project.configHolder.vmConfiguration.mainMethod
+    System.properties.each { property ->
+        if((property.key as String).startsWith("us.ihmc")) {
+            systemProperties[property.key as String] = property.value
+        }
+    }
     args = []
     if(project.hasProperty("programArgs")) {
         args project.programArgs.split(",")
@@ -112,5 +117,9 @@ task buildSourceProject(type: GradleBuild) {
 gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
     if(graph.hasTask(parseYaml) && !project.hasProperty("yaml")) {
         throw new GradleException("Attempting to use the Java execution adapter without setting the yaml location property. Please set the project property \"yaml\" to the location of the yaml configuration.\nFor more information on Gradle properties see https://docs.gradle.org/current/userguide/build_environment.html")
+    }
+
+    if(graph.hasTask(buildSourceProject) && subprojects.empty) {
+        throw new GradleException("Cannot build local source project, no subprojects are configured. Please set the IHMC_SOURCE_LOCATION environment variable.")
     }
 }
