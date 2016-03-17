@@ -10,6 +10,10 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    ArmJointTrajectoryPacketMessage.msg
+   AtlasDesiredPumpPSIPacketMessage.msg
+   AtlasElectricMotorEnablePacketMessage.msg
+   AtlasWristSensorCalibrationRequestPacketMessage.msg
+   BatchRawImuData.msg
    ChestOrientationPacketMessage.msg
    ComHeightPacketMessage.msg
    FingerStatePacketMessage.msg
@@ -29,6 +33,7 @@ find_package(catkin REQUIRED COMPONENTS
    MultiJointAnglePacketMessage.msg
    PauseCommandMessage.msg
    Point2dMessage.msg
+   RawImuData.msg
    SingleJointAnglePacketMessage.msg
    StopMotionPacketMessage.msg
    SupportPolygonMessage.msg
