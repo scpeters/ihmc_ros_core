@@ -87,7 +87,13 @@ task runJava(type: JavaExec, dependsOn: parseYaml) {
     ignoreExitValue = true
     classpath = configurations.ros
     workingDir = project.projectDir
-    maxHeapSize = project.configHolder.vmConfiguration.heapSize
+
+    def heapSizeFromYaml = project.configHolder.vmConfiguration.heapSize
+    if(heapSizeFromYaml != null)
+    {
+        maxHeapSize = heapSizeFromYaml
+    }
+
     main = project.configHolder.vmConfiguration.mainMethod
     System.properties.each { property ->
         if((property.key as String).startsWith("us.ihmc")) {
