@@ -89,7 +89,7 @@ task parseYaml {
         }
 
         def dependencyString = "${group}:${artifact}:${version}"
-        println "Dependency string: ${dependencyString}"
+
         project.dependencies.add("ros", dependencyString)
     }
 }
