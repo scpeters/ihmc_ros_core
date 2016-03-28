@@ -76,11 +76,40 @@ task parseYaml {
     configurations.create("ros")
 
     project.configHolder.dependencyHolder.dependencies.each { dep ->
-        project.dependencies.add("ros", dep)
+        def gavStrings = dep.split(":")
+        def group = gavStrings[0];
+        def artifact = gavStrings[1];
+        def version = gavStrings[2];
+
+        if(project.hasProperty("useLocal") && project.useLocal.toLowerCase().equals("true"))
+        {
+            if(group.equals("us.ihmc")) {
+                version = "LOCAL"
+            }
+        }
+
+        def dependencyString = "${group}:${artifact}:${version}"
+        println "Dependency string: ${dependencyString}"
+        project.dependencies.add("ros", dependencyString)
     }
 }
 
-task runJava(type: JavaExec, dependsOn: parseYaml) {
+task runJava(type: GradleBuild) {
+    buildFile "build.gradle"
+    def allTasks = new ArrayList<String>()
+
+    if(project.hasProperty("useLocal") && project.useLocal.toLowerCase().equals("true")) {
+        allTasks.add("buildSourceProject")
+    }
+
+    allTasks.add("runJavaDelegate")
+
+    startParameter gradle.startParameter
+
+    tasks = allTasks
+}
+
+task runJavaDelegate(type: JavaExec, dependsOn: parseYaml) {
     if(!project.hasProperty("yaml")) {
         return
     }
@@ -119,6 +148,8 @@ task buildSourceProject(type: GradleBuild) {
     buildFile = rootProject.sourceProject.buildFile
     tasks = ['publishAllToMavenLocal']
 }
+
+parseYaml.mustRunAfter buildSourceProject
 
 gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
     if(graph.hasTask(parseYaml) && !project.hasProperty("yaml")) {
