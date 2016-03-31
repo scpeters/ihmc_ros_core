@@ -47,13 +47,14 @@ The things to note are the `pkg`, `type`, and `args` attributes. In typical `ros
 
 If you have [IHMC Open Robotics Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software) cloned on your machine, you can "override" any .yaml that declares an **explicit** dependency on an IHMC Maven artifact that originates from IHMC Open Robotics Software. This currently does not support the standalone smaller libraries like ihmc_ros_control or any other library not contained in Open Robotics Software. In order to do this, you need to do two things:
 
-1. The environment variable `IHMC_SOURCE_LOCATION` must be set, and should point to the clone of the software. For example:
+- The environment variable `IHMC_SOURCE_LOCATION` must be set, and should point to the clone of the software. For example:
 ```bash
 $ cd ~
 $ git clone git@github.com:ihmcrobotics/ihmc-open-robotics-software.git
 $ export IHMC_SOURCE_LOCATION=$HOME/ihmc-open-robotics-software
 ```
-2. You must pass an argument to the Gradle script: `-PuseLocal=true`.
+
+- You must pass an argument to the Gradle script: `-PuseLocal=true`.
 
 An example of how to pass this argument to Gradle via roslaunch could look something like this:
 
