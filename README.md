@@ -12,4 +12,6 @@ The `ihmc_ros_core` project is meant to be included in a ROS catkin workspace. W
 - `ihmc_ros_common` contains common configurations and launches
 - `ihmc_ros_java_adapter` provides a mechanism for integrating any executable entry point from the IHMC codebase with roslaunch via YAML configurations.
 
-For more information, see the [GitHub Pages documentation](TODO fill this in) and the README.md files in each package.
+A good place to start is [the IHMC ROS Java Adapter](https://github.com/ihmcrobotics/ihmc_ros_core/tree/develop/ihmc_ros_java_adapter).
+
+For more information, see the [GitHub Pages documentation](TODO fill this in).
