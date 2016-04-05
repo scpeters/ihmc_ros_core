@@ -1,6 +1,6 @@
 # IHMCNetworkParameters File
 
-Many of the various components of the IHMC Robotics software architecture require a networking configuration for different pieces to talk to each other. From a high level overview, a typical IHMC setup has three primary components, and for the sake of simplicity all node should use the same configuration (with a slight caveat on the logger configuration, more on that later):
+The various components of the IHMC Robotics software architecture require a networking configuration for different pieces to talk to each other. From a high level overview, a typical IHMC setup has three primary components, and for the sake of simplicity all of these processes/components should use the same configuration (with a possible slight caveat on the logger configuration, more on that later). The components are:
 
 1. The robot control algorithm
 2. The IHMC Network Processor; this is a non-realtime node used for things high-level behaviors, the networked API endpoints, and vision. ROS messages are received here and translated in to commands for the controller
