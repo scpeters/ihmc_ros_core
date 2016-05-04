@@ -9,35 +9,37 @@ find_package(catkin REQUIRED COMPONENTS
 
  add_message_files(
    FILES
-   ArmJointTrajectoryPacketMessage.msg
-   AtlasDesiredPumpPSIPacketMessage.msg
-   AtlasElectricMotorEnablePacketMessage.msg
-   AtlasWristSensorCalibrationRequestPacketMessage.msg
-   BatchRawImuData.msg
-   ChestOrientationPacketMessage.msg
-   ComHeightPacketMessage.msg
-   FingerStatePacketMessage.msg
-   FootPosePacketMessage.msg
-   FootstepDataListMessage.msg
-   FootstepDataMessage.msg
-   FootstepStatusMessage.msg
-   HandComplianceControlParametersPacketMessage.msg
-   HandPosePacketMessage.msg
-   HeadOrientationPacketMessage.msg
-   HighLevelStateChangePacketMessage.msg
-   HighLevelStatePacketMessage.msg
-   JointAnglesPacketMessage.msg
-   JointTrajectoryPointMessage.msg
+   AbortWalkingRosMessage.msg
+   ArmDesiredAccelerationsRosMessage.msg
+   ArmTrajectoryRosMessage.msg
+   ChestTrajectoryRosMessage.msg
+   EndEffectorLoadBearingRosMessage.msg
+   EuclideanTrajectoryPointRosMessage.msg
+   FootstepDataListRosMessage.msg
+   FootstepDataRosMessage.msg
+   FootstepStatusRosMessage.msg
+   FootTrajectoryRosMessage.msg
+   GoHomeRosMessage.msg
+   HandDesiredConfigurationRosMessage.msg
+   HandTrajectoryRosMessage.msg
+   HeadTrajectoryRosMessage.msg
+   HighLevelStateChangeStatusRosMessage.msg
+   HighLevelStateRosMessage.msg
    LastReceivedMessage.msg
-   LegCompliancePacketMessage.msg
-   MultiJointAnglePacketMessage.msg
-   PauseCommandMessage.msg
-   Point2dMessage.msg
-   RawImuData.msg
-   SingleJointAnglePacketMessage.msg
-   StopMotionPacketMessage.msg
-   SupportPolygonMessage.msg
-   WholeBodyTrajectoryPacketMessage.msg
+   NeckDesiredAccelerationsRosMessage.msg
+   NeckTrajectoryRosMessage.msg
+   OneDoFJointTrajectoryRosMessage.msg
+   PauseWalkingRosMessage.msg
+   PelvisHeightTrajectoryRosMessage.msg
+   PelvisOrientationTrajectoryRosMessage.msg
+   PelvisTrajectoryRosMessage.msg
+   Point2dRosMessage.msg
+   SE3TrajectoryPointRosMessage.msg
+   SO3TrajectoryPointRosMessage.msg
+   StopAllTrajectoryRosMessage.msg
+   TrajectoryPoint1DRosMessage.msg
+   WalkingStatusRosMessage.msg
+   WholeBodyTrajectoryRosMessage.msg
  )
 
  generate_messages(
