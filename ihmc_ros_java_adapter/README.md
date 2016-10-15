@@ -17,7 +17,7 @@ vmConfig:
   heapSize: 4g
   mainMethod: us.ihmc.valkyrie.ValkyrieROSAPISimulator
 dependencies:
-- us.ihmc:Valkyrie:0.7.10
+- us.ihmc:Valkyrie:0.8.0
 ```
 
 This is the yaml file used to launch the Valkyrie SCS simulation in the [ihmc_valkyrie_ros](https://github.com/ihmcrobotics/ihmc_valkyrie_ros) package. The custom tag `!ihmc_ros_java_adapter` tells the yaml parser what to expect in this configuration file. The other entries are as follows:
