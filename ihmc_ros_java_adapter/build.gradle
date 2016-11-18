@@ -95,7 +95,9 @@ task parseYaml {
 }
 
 task warmUp(dependsOn: parseYaml) {
-    configurations.ros.resolve()
+    doLast {
+        configurations.ros.resolve()
+    }
 }
 
 task runJava(type: GradleBuild) {
