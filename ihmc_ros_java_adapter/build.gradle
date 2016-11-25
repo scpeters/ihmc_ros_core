@@ -94,7 +94,7 @@ task parseYaml {
     }
 }
 
-task warmUp(dependsOn: parseYaml) {
+task warmUp(dependsOn: parseYaml) << {
     configurations.ros.resolve()
 }
 
