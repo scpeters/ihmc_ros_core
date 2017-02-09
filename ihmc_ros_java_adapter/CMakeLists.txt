@@ -12,12 +12,15 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-install(DIRECTORY .
+install(FILES
+  build.gradle
+  settings.gradle
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-  FILES_MATCHING PATTERN "*.gradle"
-                 PATTERN "gradlew"
-  PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
-                    GROUP_EXECUTE GROUP_READ
+)
+
+install(PROGRAMS
+ gradlew
+ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
 install(DIRECTORY gradle
