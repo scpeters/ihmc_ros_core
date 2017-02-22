@@ -1,3 +1,11 @@
+## 0.9.1
+
+Fix a bug in the ROS Java Adapter that prevented it from downloading .jars correctly.
+
+Some context can be found here: https://github.com/bytedeco/javacv/issues/395
+
+Basically we already applied the above fix to our build system that emits the .jars but we didn't add it to the gradle scaffolding in this project that also downloads the .jars.
+
 ## 0.9.0
 
 Release 0.9.0 introduces a semi-long-term support version of the ROS API. 
