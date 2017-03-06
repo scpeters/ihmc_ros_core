@@ -42,6 +42,16 @@ repositories {
     mavenCentral()
 }
 
+if(!gradle.startParameter.taskNames.contains("warmUp"))
+{
+    gradle.startParameter.excludedTaskNames << "warmUp"
+    project.ext.doWarmup = false
+}
+else
+{
+    project.ext.doWarmup = true
+}
+
 configurations {
     all*.exclude group: 'org.bytedeco', module: 'javacpp-presets'
 }
@@ -101,7 +111,11 @@ task parseYaml {
     }
 }
 
-task warmUp(dependsOn: parseYaml) << {
+task warmUp(dependsOn: parseYaml) {
+    if(!project.doWarmup)
+    {
+        return;
+    }
     configurations.ros {
         exclude group: 'org.bytedeco', module: 'javacpp-presets'
     }
