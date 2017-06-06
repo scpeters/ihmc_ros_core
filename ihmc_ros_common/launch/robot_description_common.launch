@@ -6,8 +6,11 @@
   
   <param name="/ihmc_ros/robot_name" value="$(arg robot_name)" />
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
-    <remap from="joint_states" to="/ihmc_ros/$(arg robot_name)/output/joint_states" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <rosparam param="/source_list">[/multisense/joint_states, /hardware_joint_states]</rosparam>
+    <remap from="robot_description" to="/$(arg robot_name)/robot_description" />
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
     <remap from="robot_description" to="/$(arg robot_name)/robot_description" />
   </node>
 </launch>
